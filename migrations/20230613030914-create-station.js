@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       address: {
         type: Sequelize.STRING
@@ -28,6 +29,7 @@ module.exports = {
       }
     });
   },
+  // eslint-disable-next-line no-unused-vars
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('stations');
   }
