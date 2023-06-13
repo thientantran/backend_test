@@ -5,6 +5,10 @@
   "repository": "https://github.com/thientantran/backend_test.git",
   "author": "thientantran <thientantm@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "mysql2": "^3.3.5",
