@@ -45,4 +45,22 @@ const getDetailtStation = async (req, res) => {
     }
 }
 
-module.exports = {createStation, getAllStation, getDetailtStation}
+const updateStation = async (req, res) => {
+    const {id} = req.params
+    const {name, address, province} = req.body
+    try {
+        await station.update(
+            {name, address, province},
+            {
+                where: {
+                    id,
+                }
+            }
+        )
+        res.status(200).send({name, address, province})
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
+module.exports = {createStation, getAllStation, getDetailtStation, updateStation}
