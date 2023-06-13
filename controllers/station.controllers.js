@@ -63,4 +63,18 @@ const updateStation = async (req, res) => {
     }
 }
 
-module.exports = {createStation, getAllStation, getDetailtStation, updateStation}
+const deleteStation = async (req, res) => {
+    const {id} = req.params;
+    try {
+        await station.destroy({
+            where: {
+                id,
+            }
+        })
+        res.status(200).send(`Deleted ${id}`)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
+module.exports = {createStation, getAllStation, getDetailtStation, updateStation, deleteStation}
