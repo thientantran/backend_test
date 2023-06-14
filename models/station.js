@@ -15,8 +15,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   station.init({
-    name: {type:DataTypes.STRING, allowNull:false},
-    address: DataTypes.STRING,
+    name: {type:DataTypes.STRING, allowNull:false, validate:{
+      notEmpty:true,
+      len:[2,20]
+    }},
+    address: {
+      type:DataTypes.STRING,
+      validate: {
+        checkLen(value){
+          if(value.length >=5 && value.length <= 20){
+            return true
+          }else{
+            throw new Error("Do dai tu 5-20 cho address")
+          }
+        }
+      }
+    },
     province: DataTypes.STRING
   }, {
     sequelize,
