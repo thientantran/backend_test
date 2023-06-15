@@ -1,5 +1,6 @@
 const {user} = require("../models")
 const bcryptjs = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 const register = async(req, res) => {
     const {name, email, password, phone} = req.body;
@@ -24,7 +25,8 @@ const login = async (req, res) => {
         if(newUser){
             const isAuth = bcryptjs.compareSync(password, newUser.password);
             if(isAuth){
-                res.status(200).send({message: "Login"})
+                const token = jwt.sign({email: newUser.email, type: newUser.type}, "thien-tan", {expiresIn: 30*60})
+                res.status(200).send({message: "Login", token:token})
             }else{
                 res.status(500).send({message:"Login Failed"})
             }
