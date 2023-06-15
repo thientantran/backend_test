@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false
       },
       email: {
         type: Sequelize.STRING
@@ -22,7 +23,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       type: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "CLIENT"
       },
       createdAt: {
         allowNull: false,
