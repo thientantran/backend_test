@@ -24,7 +24,10 @@ module.exports = {
       },
       type: {
         type: Sequelize.STRING,
-        defaultValue: "ADMIN"
+        defaultValue: "CLIENT"
+      },
+      avatar: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

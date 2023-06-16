@@ -38,4 +38,23 @@ const login = async (req, res) => {
     }
 }
 
- module.exports = {register,login}
+const uploadAvatar = async (req, res) => {
+    const file = req.file;
+    if(!file){
+        return res.status(400).send({message: "please upload a file"});
+    }
+    
+    const urlImage = `http://localhost:3000/${file.path}`
+    const userInformation = req.user
+    console.log(userInformation)
+    const userFound = await user.findOne({
+        where:{
+            email: userInformation.email
+        }
+    })
+    userFound.avatar = urlImage;
+    await userFound.save();
+    return res.status(200).send({message: "Upload Successfully", "link": urlImage, "user": userFound});
+}
+
+ module.exports = {register,login, uploadAvatar}
