@@ -46,4 +46,23 @@ const deleteTrip = async (req, res) => {
     }
 }
 
-module.exports = {createTrip,getAllTrip,deleteTrip}
+const updateTrip = async (req, res) =>{
+    
+    try {
+        const {id} = req.params;
+        const {fromStation, toStation, startTime, price} =req.body;
+        await trip.update(
+            {fromStation, toStation, startTime, price},
+            {
+                where:{
+                    id
+                }
+            }
+        );
+        res.status(200).send({fromStation, toStation, startTime, price})
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
+module.exports = {createTrip,getAllTrip,deleteTrip, updateTrip}
