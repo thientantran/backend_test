@@ -1,4 +1,5 @@
 const {trip} = require("../models")
+const {station} = require("../models")
 const createTrip = async (req, res) => {
     const {fromStation, toStation, startTime, price} = req.body; 
     try {
@@ -9,4 +10,24 @@ const createTrip = async (req, res) => {
     }
 }
 
-module.exports = {createTrip}
+const getAllTrip = async (req, res) =>{
+    try {
+        const tripList = await trip.findAll({
+            include: [
+                {
+                    model: station,
+                    as: "from"
+                },
+                {
+                    model: station,
+                    as: "to"
+                }
+            ]
+        });
+        res.status(200).send(tripList)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
+module.exports = {createTrip,getAllTrip}
