@@ -30,4 +30,20 @@ const getAllTrip = async (req, res) =>{
     }
 }
 
-module.exports = {createTrip,getAllTrip}
+const deleteTrip = async (req, res) => {
+    const {id} = req.params;
+    try {
+        
+        await trip.destroy({
+            where:{
+                id
+            }
+        });
+        res.status(200).send({message: "Deleted"})
+    } catch (error) {
+        console.log(error)
+        res.status(500).send(error)
+    }
+}
+
+module.exports = {createTrip,getAllTrip,deleteTrip}
