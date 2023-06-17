@@ -9,6 +9,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      fromStation:{
+        type: Sequelize.INTEGER,
+        references:{
+          model: "stations",
+          key: "id"
+        }
+      },
+      toStation:{
+        type: Sequelize.INTEGER,
+        references:{
+          model: "stations",
+          key: "id"
+        }
+      },
       startTime: {
         type: Sequelize.DATE
       },

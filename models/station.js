@@ -10,8 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     // eslint-disable-next-line no-unused-vars
-    static associate(models) {
+    static associate({trip}) {
       // define association here
+      this.hasMany(trip, {foreignKey: "fromStation", as:"from"})
+      this.hasMany(trip, {foreignKey: "toStation", as:"to"})
     }
   }
   station.init({
